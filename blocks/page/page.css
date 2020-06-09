@@ -1,0 +1,6 @@
+@import url('./__wrapper/page__wrapper.css');
+
+.page {
+  background-color: black;
+  color: white;
+}
