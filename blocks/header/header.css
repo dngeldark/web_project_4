@@ -3,7 +3,6 @@
 .header {
   border-bottom: 1px rgba(250, 250, 250, 0.3) solid;
   max-height: 119px;
-  max-width: calc(100% - 199px);
   margin: auto;
   padding-top: 45px;
 }

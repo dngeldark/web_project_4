@@ -1,0 +1,10 @@
+@import url('./__caption/card__caption.css');
+
+.card {
+  border-radius: 10px;
+  max-width: fit-content;
+  background-color: white;
+  color: black;
+  min-width: 282px;
+  margin: 21px 0 0 0;
+}
