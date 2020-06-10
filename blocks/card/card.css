@@ -1,4 +1,5 @@
 @import url('./__caption/card__caption.css');
+@import url('./__picure/card__picture.css');
 
 .card {
   border-radius: 10px;
