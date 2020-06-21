@@ -1,0 +1,26 @@
+@import url('./__container/popup__container.css');
+@import url('./__close-btn/popup__close-btn.css');
+
+.popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  display: none;
+}
+
+.popup::before {
+  position: fixed;
+  content: '';
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  opacity: 0.8;
+  z-index: -1;
+}
+
+.popup_opened {
+  display: flex;
+}

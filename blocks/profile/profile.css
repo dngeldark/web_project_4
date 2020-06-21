@@ -7,5 +7,5 @@
   display: flex;
   min-height: 211px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
 }

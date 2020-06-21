@@ -1,0 +1,15 @@
+@import url('./__name/form__name.css');
+@import url('./__profession/form__profession.css');
+@import url('./__save-btn/form__save-btn.css');
+
+.form {
+  background-color: white;
+  color: black;
+  max-width: 450px;
+  display: flex;
+  flex-flow: column;
+  padding: 50px 0;
+  z-index: 2;
+  align-items: center;
+  border-radius: 10px;
+}

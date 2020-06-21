@@ -1,0 +1,15 @@
+.popup__close-btn {
+  height: 50px;
+  width: 50px;
+  align-self: flex-end;
+  background-color: transparent;
+  border: 0;
+  color: white;
+}
+
+.popup__close-btn:focus {
+}
+
+.popup__close-btn:visited {
+  background-color: red;
+}
