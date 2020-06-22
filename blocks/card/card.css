@@ -3,9 +3,20 @@
 
 .card {
   border-radius: 10px;
+  max-height: 361px;
   max-width: fit-content;
   background-color: white;
   color: black;
   min-width: 282px;
   margin: 21px 0 0 0;
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    margin: 0 0 20px;
+  }
+
+  .card:last-child {
+    margin-bottom: 0;
+  }
 }

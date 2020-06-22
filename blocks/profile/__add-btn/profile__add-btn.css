@@ -1,6 +1,6 @@
 .profile__add-btn {
   background-color: black;
-  width: 150px;
+  width: 10%;
   height: 50px;
   border: 2px solid white;
   border-radius: 2px;
@@ -11,4 +11,11 @@
 
 .profile__add-btn:hover {
   opacity: 0.5;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__add-btn {
+    width: 88%;
+    margin: 36px auto;
+  }
 }
