@@ -9,9 +9,15 @@
   margin: 0 auto;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
+  .header {
+    padding: 28px 0 0 10%;
+    max-height: 56px;
+  }
+}
+
+@media screen and (max-width: 320px) {
   .header {
     padding: 28px 0 0 27px;
-    max-height: 56px;
   }
 }

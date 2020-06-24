@@ -1,5 +1,9 @@
 .form__name {
-  max-width: 300px;
+  width: 100%;
   border: 0;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid rgb(170, 168, 168);
+  margin-bottom: 29px;
+  font-size: 14px;
+  line-height: 2;
+  outline: none;
 }

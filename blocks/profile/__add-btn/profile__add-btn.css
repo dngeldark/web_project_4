@@ -1,19 +1,23 @@
 .profile__add-btn {
   background-color: black;
-  width: 10%;
+  width: 17%;
   height: 50px;
   border: 2px solid white;
   border-radius: 2px;
   color: white;
   transition: 0.3s;
   margin-left: auto;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .profile__add-btn:hover {
   opacity: 0.5;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
   .profile__add-btn {
     width: 88%;
     margin: 36px auto;
