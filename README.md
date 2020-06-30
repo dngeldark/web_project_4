@@ -2,15 +2,8 @@
 
 ### Overview
 
-* Figma
-* Images
+In this project I made use of javascript to target elements in the DOM to be able to change and to store data from the forms.
 
-**Figma**
+**Project**
 
-* [Link to the project in Figma](https://www.figma.com/file/mUgu8OSHWE0M6p6vfwmdu9/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
-
-**Images**
-
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-
-Have fun with JavaScript!
+- [Link to the project Website](https://dngeldark.github.io/web_project_4/)

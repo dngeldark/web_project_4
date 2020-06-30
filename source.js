@@ -1,18 +1,19 @@
-let editBtn = document.querySelector('.profile__edit-btn');
-let closeBtn = document.querySelector('.popup__close-btn');
-let saveBtn = document.querySelector('.form__save-btn');
+const editBtn = document.querySelector('.profile__edit-btn');
+const closeBtn = document.querySelector('.popup__close-btn');
+const formElement = document.querySelector('.form');
+const profileName = document.querySelector('.profile__name');
+const profileJob = document.querySelector('.profile__job');
+const job = document.querySelector('.form__profession');
+const name = document.querySelector('.form__name');
 
 function toggleModal(e) {
   document.querySelector('.popup').classList.toggle('popup_opened');
   e.preventDefault();
+  name.value = profileName.innerText;
+  job.value = profileJob.innerText;
 }
 
-function editInfo(e) {
-  let profileName = document.querySelector('.profile__name');
-  let profileJob = document.querySelector('.profile__job');
-  let job = document.querySelector('.form__profession');
-  let name = document.querySelector('.form__name');
-
+function formSubmitHandler(e) {
   e.preventDefault();
   if (name.value.length > 0) {
     profileName.innerText = name.value;
@@ -26,4 +27,4 @@ function editInfo(e) {
 
 closeBtn.addEventListener('click', toggleModal);
 editBtn.addEventListener('click', toggleModal);
-saveBtn.addEventListener('click', editInfo);
+formElement.addEventListener('submit', formSubmitHandler);
