@@ -8,23 +8,19 @@
   </head>
   <body class="page page__wrapper">
     <header class="header">
-      <img src="./images/Vector.png" class="header__logo" />
+      <img src="./images/logo.png" class="header__logo" />
     </header>
     <main class="content">
       <section class="profile">
         <img class="profile__avatar" src="./images/me.jpg" />
         <div class="profile__info">
-          <p class="profile__name">
+          <h1 class="profile__name">
             Juan Hernandez
-          </p>
-          <h3 class="profile__job">Developer</h3>
-          <button class="profile__edit-btn">
-            <img src="./images/Vector (1).png" />
-          </button>
+          </h1>
+          <p class="profile__job">Developer</p>
+          <button class="profile__edit-btn"></button>
         </div>
-        <button class="profile__add-btn">
-          <img src="./images/Vector-cross.png" />
-        </button>
+        <button class="profile__add-btn"></button>
       </section>
       <section class="cards">
         <figure class="card">
@@ -33,10 +29,10 @@
             class="card__picture"
             alt="Yosemite Valley"
           />
-          <figcaption class="card__caption">
-            Yosemite Valley
-            <img src="./images/heart.png" alt="Yosemite Valley" />
-          </figcaption>
+          <div class="card__caption">
+            <h3 class="card__title">Yosemite Valley</h3>
+            <button class="card__like-btn"></button>
+          </div>
         </figure>
         <figure class="card">
           <img
@@ -45,8 +41,8 @@
             alt="Yosemite Valley"
           />
           <figcaption class="card__caption">
-            Lake Louise
-            <img src="./images/heart.png" alt="Lake Louise" />
+            <h3 class="card__title">Lake Louise</h3>
+            <button class="card__like-btn"></button>
           </figcaption>
         </figure>
         <figure class="card">
@@ -56,8 +52,8 @@
             alt="Yosemite Valley"
           />
           <figcaption class="card__caption">
-            Lago di Braies
-            <img src="./images/heart.png" alt="Lago di Braies" />
+            <h3 class="card__title">Lago di Braies</h3>
+            <button class="card__like-btn"></button>
           </figcaption>
         </figure>
         <figure class="card">
@@ -67,8 +63,8 @@
             alt="Yosemite Valley"
           />
           <figcaption class="card__caption">
-            Latemar
-            <img src="./images/heart.png" alt="latemar" />
+            <h3 class="card__title">Latemar</h3>
+            <button class="card__like-btn"></button>
           </figcaption>
         </figure>
         <figure class="card">
@@ -78,8 +74,8 @@
             alt="Yosemite Valley"
           />
           <figcaption class="card__caption">
-            Vanois National...
-            <img src="./images/heart.png" alt="Vanois National" />
+            <h3 class="card__title">Vanois National...</h3>
+            <button class="card__like-btn"></button>
           </figcaption>
         </figure>
         <figure class="card">
@@ -89,8 +85,8 @@
             alt="Yosemite Valley"
           />
           <figcaption class="card__caption">
-            Bald Mountains
-            <img src="./images/heart.png" alt="Bald Mountains" />
+            <h3 class="card__title">Bald Mountains</h3>
+            <button class="card__like-btn"></button>
           </figcaption>
         </figure>
       </section>
@@ -102,16 +98,20 @@
       <div class="popup__container">
         <form class="form">
           <h2 class="form__title">Edit profile</h2>
-          <input type="text" class="form__name" placeholder="name" />
+          <input
+            type="text"
+            class="form__name"
+            value="Juan Hernandez"
+            placeholder="name"
+          />
           <input
             type="text"
             class="form__profession"
-            placeholder="profession"
+            value="Developer"
+            placeholder="Profession"
           />
-          <button class="form__save-btn">Save</button>
-          <button class="popup__close-btn">
-            <img class="popup__icon" src="./images/Vector-cross.png" />
-          </button>
+          <button class="form__save-btn" type="submit">Save</button>
+          <button class="popup__close-btn" type="reset"></button>
         </form>
       </div>
     </div>

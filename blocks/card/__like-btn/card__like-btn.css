@@ -1,0 +1,11 @@
+.card__like-btn {
+  background-image: url('../../../images/heart.png');
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border: none;
+  background-position: center;
+  outline: none;
+  padding: 0;
+}

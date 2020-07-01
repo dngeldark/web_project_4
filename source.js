@@ -3,26 +3,18 @@ const closeBtn = document.querySelector('.popup__close-btn');
 const formElement = document.querySelector('.form');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
-const job = document.querySelector('.form__profession');
-const name = document.querySelector('.form__name');
+const jobInput = document.querySelector('.form__profession');
+const nameInput = document.querySelector('.form__name');
 
-function toggleModal(e) {
+function toggleModal() {
   document.querySelector('.popup').classList.toggle('popup_opened');
-  e.preventDefault();
-  name.value = profileName.innerText;
-  job.value = profileJob.innerText;
 }
 
 function formSubmitHandler(e) {
   e.preventDefault();
-  if (name.value.length > 0) {
-    profileName.innerText = name.value;
-    profileJob.innerText = job.value;
-    name.value = '';
-    job.value = '';
-  }
-
-  toggleModal(e);
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
+  toggleModal();
 }
 
 closeBtn.addEventListener('click', toggleModal);
