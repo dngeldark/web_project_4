@@ -22,74 +22,7 @@
         </div>
         <button class="profile__add-btn"></button>
       </section>
-      <section class="cards">
-        <figure class="card">
-          <img
-            src="./images/kirill-pershin.jpg"
-            class="card__picture"
-            alt="Yosemite Valley"
-          />
-          <div class="card__caption">
-            <h3 class="card__title">Yosemite Valley</h3>
-            <button class="card__like-btn"></button>
-          </div>
-        </figure>
-        <figure class="card">
-          <img
-            src="./images/kirill-pershin-1h.jpg"
-            class="card__picture"
-            alt="Yosemite Valley"
-          />
-          <figcaption class="card__caption">
-            <h3 class="card__title">Lake Louise</h3>
-            <button class="card__like-btn"></button>
-          </figcaption>
-        </figure>
-        <figure class="card">
-          <img
-            src="./images/kirill-pershin-2h.jpg"
-            class="card__picture"
-            alt="Yosemite Valley"
-          />
-          <figcaption class="card__caption">
-            <h3 class="card__title">Lago di Braies</h3>
-            <button class="card__like-btn"></button>
-          </figcaption>
-        </figure>
-        <figure class="card">
-          <img
-            src="./images/kirill-pershin-3.jpg"
-            class="card__picture"
-            alt="Yosemite Valley"
-          />
-          <figcaption class="card__caption">
-            <h3 class="card__title">Latemar</h3>
-            <button class="card__like-btn"></button>
-          </figcaption>
-        </figure>
-        <figure class="card">
-          <img
-            src="./images/kirill-pershin-4.jpg"
-            class="card__picture"
-            alt="Yosemite Valley"
-          />
-          <figcaption class="card__caption">
-            <h3 class="card__title">Vanois National...</h3>
-            <button class="card__like-btn"></button>
-          </figcaption>
-        </figure>
-        <figure class="card">
-          <img
-            src="./images/kirill-pershin-5.jpg"
-            class="card__picture"
-            alt="Yosemite Valley"
-          />
-          <figcaption class="card__caption">
-            <h3 class="card__title">Bald Mountains</h3>
-            <button class="card__like-btn"></button>
-          </figcaption>
-        </figure>
-      </section>
+      <section class="cards"></section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">@ 2020 Around the U.S.</p>
@@ -98,23 +31,27 @@
       <div class="popup__container">
         <form class="form">
           <h2 class="form__title">Edit profile</h2>
-          <input
-            type="text"
-            class="form__name"
-            value="Juan Hernandez"
-            placeholder="name"
-          />
-          <input
-            type="text"
-            class="form__profession"
-            value="Developer"
-            placeholder="Profession"
-          />
+          <input type="text" class="form__name" />
+          <input type="text" class="form__profession" />
           <button class="form__save-btn" type="submit">Save</button>
           <button class="popup__close-btn" type="reset"></button>
         </form>
       </div>
     </div>
+    <div class="picture-modal">
+      <img class="picture-modal__image" />
+      <p class="picture-modal__title"></p>
+    </div>
+    <template id="card-template">
+      <figure class="card">
+        <img class="card__picture" />
+        <button class="card__delete-btn"></button>
+        <div class="card__caption">
+          <h3 class="card__title"></h3>
+          <button class="card__like-btn"></button>
+        </div>
+      </figure>
+    </template>
     <script src="./source.js"></script>
   </body>
 </html>

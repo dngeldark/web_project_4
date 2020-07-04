@@ -1,11 +1,14 @@
+@import url('../__like-btn/__like-btn_active/card__like-btn_active.css');
+
 .card__like-btn {
   background-image: url('../../../images/heart.png');
   background-repeat: no-repeat;
   width: 20px;
   height: 20px;
-  background-color: white;
   border: none;
   background-position: center;
+  background-color: white;
   outline: none;
   padding: 0;
+  transition: 0.3s;
 }

@@ -1,3 +1,11 @@
 .card__picture {
   border-radius: 10px 10px 0 0;
+  width: 282px;
+  height: 282px;
+  object-fit: cover;
+  transition: 2s;
+}
+
+.card__picture:hover {
+  transform: scale(1.02);
 }

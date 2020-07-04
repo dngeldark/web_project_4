@@ -1,0 +1,16 @@
+.picture-modal__image {
+  margin-top: 50vh;
+  transform: translateY(-50%);
+  object-fit: cover;
+  width: 75vw;
+  height: 75vh;
+}
+
+@media screen and (max-width: 400px) {
+  .picture-modal__image {
+    width: 240px;
+    height: 299px;
+    object-fit: cover;
+    object-position: center;
+  }
+}
