@@ -42,8 +42,8 @@ const closeBtn = document.querySelector('.popup__close-btn');
 const formElement = document.querySelector('.form');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
-const jobInput = document.querySelector('.form__profession');
-const nameInput = document.querySelector('.form__name');
+const formInputOne = document.querySelector('.form__profession');
+const formInputTwo = document.querySelector('.form__name');
 const formTitle = document.querySelector('.form__title');
 const modal = document.querySelector('.picture-modal');
 const modalPicture = document.querySelector('.picture-modal__image');
@@ -59,8 +59,8 @@ function toggleModal() {
 //Submit handle for profile form
 function formSubmitHandler(e) {
   e.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileJob.textContent = jobInput.value;
+  profileName.textContent = formInputTwo.value;
+  profileJob.textContent = formInputOne.value;
   formElement.reset();
   toggleModal();
 }
@@ -71,8 +71,8 @@ closeBtn.addEventListener('click', toggleModal);
 //Open profile edit form
 editBtn.addEventListener('click', () => {
   toggleModal();
-  jobInput.placeholder = 'Profession';
-  nameInput.placeholder = 'Name';
+  formInputOne.placeholder = 'Profession';
+  formInputTwo.placeholder = 'Name';
   formTitle.textContent = 'Edit Profile';
   formElement.removeEventListener('submit', addBtnSubmitHandler);
   formElement.addEventListener('submit', formSubmitHandler);
@@ -132,7 +132,11 @@ const renderCards = function () {
 function addBtnSubmitHandler(evt) {
   evt.preventDefault();
   evt.stopImmediatePropagation();
-  const newCard = { name: nameInput.value, link: jobInput.value, liked: false };
+  const newCard = {
+    name: formInputTwo.value,
+    link: formInputOne.value,
+    liked: false,
+  };
   initialCards.push(newCard);
   formElement.reset();
   cards.insertBefore(createCard(newCard), cards.firstChild);
@@ -142,8 +146,8 @@ function addBtnSubmitHandler(evt) {
 //add event listener to add button
 addButton.addEventListener('click', () => {
   toggleModal();
-  nameInput.placeholder = 'Title';
-  jobInput.placeholder = 'Image URL';
+  formInputTwo.placeholder = 'Title';
+  formInputOne.placeholder = 'Image URL';
   formTitle.textContent = 'New Place';
   formElement.removeEventListener('submit', formSubmitHandler);
   formElement.addEventListener('submit', addBtnSubmitHandler);
