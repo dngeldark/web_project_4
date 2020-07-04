@@ -1,9 +1,7 @@
 .picture-modal__image {
-  margin-top: 50vh;
-  transform: translateY(-50%);
-  object-fit: cover;
-  width: 75vw;
-  height: 75vh;
+  object-fit: contain;
+  max-width: 75vw;
+  max-height: 75vh;
 }
 
 @media screen and (max-width: 400px) {

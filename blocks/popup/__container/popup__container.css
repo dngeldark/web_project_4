@@ -1,8 +1,8 @@
 .popup__container {
   position: fixed;
-  margin-top: 190px;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, 0);
+  transform: translate(-50%, -50%);
   display: flex;
   flex-flow: column;
   min-width: 430px;
@@ -11,7 +11,6 @@
 
 @media screen and (max-width: 725px) {
   .popup__container {
-    min-width: 200px;
-    margin-top: 20vh;
+    min-width: calc(100% - 80px);
   }
 }

@@ -1,5 +1,6 @@
 .picture-modal__title {
-  margin: 10px 12.5vw;
-  align-self: flex-start;
-  max-width: 75vw;
+  margin: 0;
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 1.3;
 }

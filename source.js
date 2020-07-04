@@ -51,10 +51,12 @@ const modalTitle = document.querySelector('.picture-modal__title');
 const addButton = document.querySelector('.profile__add-btn');
 const cards = document.querySelector('.cards');
 
+//open-close forms
 function toggleModal() {
   document.querySelector('.popup').classList.toggle('popup_opened');
 }
 
+//Submit handle for profile form
 function formSubmitHandler(e) {
   e.preventDefault();
   profileName.textContent = nameInput.value;
@@ -63,8 +65,10 @@ function formSubmitHandler(e) {
   toggleModal();
 }
 
+//Form cloe button handler
 closeBtn.addEventListener('click', toggleModal);
 
+//Open profile edit form
 editBtn.addEventListener('click', () => {
   toggleModal();
   jobInput.placeholder = 'Profession';
@@ -87,46 +91,43 @@ const createCard = function (item) {
   //like-button click handle
   likeBtn.addEventListener('click', () => {
     item.liked = !item.liked;
-    const test = document.createElement('div');
-    test.textContent = 'test';
+    let icon = div.querySelector('.card__like-btn').style;
+    item.liked
+      ? (icon.backgroundImage = "url('./images/blackHeart.png')")
+      : (icon.backgroundImage = "url('./images/heart.png')");
   });
 
   //delete-button click handle
-  div.querySelector('.card__delete-btn').addEventListener('click', (e) => {
+  div.querySelector('.card__delete-btn').addEventListener('click', () => {
     initialCards.splice(initialCards.indexOf(item), 1);
     div.remove();
   });
 
-  //click handle on card__picture , picture-modal opens
+  //Open picture-modal when card is clicked
   cardPicture.addEventListener('click', (e) => {
     modalPicture.src = e.target.src;
     modalTitle.textContent = e.target.alt;
     modal.classList.toggle('fade-out');
 
-    //modal closes when the picture in it is clicked
-    modalPicture.addEventListener('click', (evt) => {
-      modal.classList.toggle('fade-out');
-      evt.stopImmediatePropagation();
-    });
+    //Close picture-modal on click
+    modal
+      .querySelector('.picture-modal__close-btn')
+      .addEventListener('click', (evt) => {
+        modal.classList.toggle('fade-out');
+        evt.stopImmediatePropagation();
+      });
   });
   return div;
 };
 
-//create the cards and append to the cards container
+//Render cards and append to cards block
 const renderCards = function () {
-  //const cards = document.querySelector('.cards');
-  //const cardArr = cards.children;
-  //clear cards each time a new one is added
-  //Array.from(cardArr).forEach((element) => {
-  //  element.remove();
-  //});
-
   initialCards.map((item) => {
     cards.append(createCard(item));
   });
 };
 
-//handle submit for New Place form
+//submit handle for New Place form
 function addBtnSubmitHandler(evt) {
   evt.preventDefault();
   evt.stopImmediatePropagation();
@@ -134,7 +135,6 @@ function addBtnSubmitHandler(evt) {
   initialCards.push(newCard);
   formElement.reset();
   cards.append(createCard(newCard));
-  console.log(cards);
   toggleModal();
 }
 

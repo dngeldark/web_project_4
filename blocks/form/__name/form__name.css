@@ -7,3 +7,10 @@
   line-height: 2;
   outline: none;
 }
+
+@media screen and (max-width: 725px) {
+  .form__name {
+    margin-bottom: 20px;
+    font-size: 12px;
+  }
+}

@@ -12,3 +12,7 @@
   padding: 0;
   transition: 0.3s;
 }
+
+.card__like-btn:hover {
+  cursor: pointer;
+}

@@ -1,22 +1,24 @@
 @import url('./__image/picture-modal__image.css');
 @import url('./__title/picture-modal__title.css');
+@import url('./__close-btn/picture-modal__close-btn.css');
+@import url('./__container/picture__modal-container.css');
 
 .picture-modal {
+  width: 100vw;
+  height: 100vh;
   position: fixed;
   background-color: rgba(0, 0, 0, 0.863);
   top: 0;
   left: 0;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
   opacity: 0;
   transition: 0.3s ease-out;
   pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .fade-out {
-  width: 100vw;
-  height: 100vh;
   opacity: 1;
   transition: 0.3s ease-out;
   pointer-events: all;
