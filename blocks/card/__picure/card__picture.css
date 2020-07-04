@@ -4,6 +4,7 @@
   height: 282px;
   object-fit: fill;
   transition: 2s;
+  cursor: pointer;
 }
 
 .card__picture:hover {
