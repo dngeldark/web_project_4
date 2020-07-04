@@ -80,27 +80,28 @@ editBtn.addEventListener('click', () => {
 
 //create Card element
 const createCard = function (item) {
-  const div = document.createElement('div');
-  div.append(document.querySelector('#card-template').content.cloneNode(true));
-  const cardPicture = div.querySelector('.card__picture');
-  const likeBtn = div.querySelector('.card__like-btn');
+  const card = document.createElement('figure');
+  card.append(document.querySelector('#card-template').content.cloneNode(true));
+  card.classList.add('card');
+  const cardPicture = card.querySelector('.card__picture');
+  const likeBtn = card.querySelector('.card__like-btn');
   cardPicture.src = item.link;
   cardPicture.alt = item.name;
-  div.querySelector('.card__title').textContent = item.name;
+  card.querySelector('.card__title').textContent = item.name;
 
   //like-button click handle
   likeBtn.addEventListener('click', () => {
     item.liked = !item.liked;
-    let icon = div.querySelector('.card__like-btn').style;
+    let icon = card.querySelector('.card__like-btn').style;
     item.liked
       ? (icon.backgroundImage = "url('./images/blackHeart.png')")
       : (icon.backgroundImage = "url('./images/heart.png')");
   });
 
   //delete-button click handle
-  div.querySelector('.card__delete-btn').addEventListener('click', () => {
+  card.querySelector('.card__delete-btn').addEventListener('click', () => {
     initialCards.splice(initialCards.indexOf(item), 1);
-    div.remove();
+    card.remove();
   });
 
   //Open picture-modal when card is clicked
@@ -117,7 +118,7 @@ const createCard = function (item) {
         evt.stopImmediatePropagation();
       });
   });
-  return div;
+  return card;
 };
 
 //Render cards and append to cards block
@@ -127,14 +128,14 @@ const renderCards = function () {
   });
 };
 
-//submit handle for New Place form
+//Add new card form handler
 function addBtnSubmitHandler(evt) {
   evt.preventDefault();
   evt.stopImmediatePropagation();
   const newCard = { name: nameInput.value, link: jobInput.value, liked: false };
   initialCards.push(newCard);
   formElement.reset();
-  cards.append(createCard(newCard));
+  cards.insertBefore(createCard(newCard), cards.firstChild);
   toggleModal();
 }
 
