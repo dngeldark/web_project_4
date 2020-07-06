@@ -101,6 +101,7 @@ function likeCard(evt) {
 function openPictureModal(evt) {
   if (evt.target.classList[0] === 'card__picture') {
     modalPicture.src = evt.target.src;
+    modalPicture.alt = evt.target.alt;
     modalTitle.textContent = evt.target.alt;
     modal.classList.toggle('fade-out');
   }
