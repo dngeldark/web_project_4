@@ -1,0 +1,14 @@
+.place-form__url-input {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid rgb(170, 168, 168);
+  font-size: 14px;
+  line-height: 2;
+  outline: none;
+}
+
+@media screen and (max-width: 725px) {
+  .place-form__url-input {
+    font-size: 12px;
+  }
+}

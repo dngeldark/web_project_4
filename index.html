@@ -8,11 +8,19 @@
   </head>
   <body class="page page__wrapper">
     <header class="header">
-      <img src="./images/logo.png" class="header__logo" />
+      <img
+        src="./images/logo.png"
+        class="header__logo"
+        alt="Around the USA logo"
+      />
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="./images/me.jpg" />
+        <img
+          class="profile__avatar"
+          src="./images/me.jpg"
+          alt="Profile picture"
+        />
         <div class="profile__info">
           <h1 class="profile__name">
             Juan Hernandez
@@ -31,19 +39,50 @@
       <div class="popup__container">
         <form class="form">
           <h2 class="form__title">Edit profile</h2>
-          <input type="text" class="form__name" />
-          <input type="text" class="form__profession" />
+          <input
+            type="text"
+            class="form__name"
+            placeholder="Name"
+            value="Juan Hernandez"
+          />
+          <input
+            type="text"
+            value="Developer"
+            class="form__profession"
+            placeholder="Profession"
+          />
           <button class="form__save-btn" type="submit">Save</button>
           <button class="popup__close-btn" type="reset"></button>
         </form>
       </div>
     </div>
-    <div class="picture-modal">
-      <div class="picture-modal__container">
-        <img class="picture-modal__image" />
-        <p class="picture-modal__title"></p>
-        <button class="picture-modal__close-btn"></button>
+
+    <div class="add-pic-popup">
+      <div class="add-pic-popup__container">
+        <form class="place-form">
+          <h2 class="place-form__title">Add New Place</h2>
+          <input
+            type="text"
+            class="place-form__title-input"
+            placeholder="Title"
+          />
+          <input
+            type="text"
+            class="place-form__url-input"
+            placeholder="Image URL"
+          />
+          <button class="place-form__save-btn" type="submit">Save</button>
+          <button class="add-pic-popup__close-btn" type="reset"></button>
+        </form>
       </div>
+    </div>
+
+    <div class="picture-modal">
+      <figure class="picture-modal__container">
+        <img class="picture-modal__image" />
+        <figcaption class="picture-modal__title"></figcaption>
+        <button class="picture-modal__close-btn"></button>
+      </figure>
     </div>
     <template id="card-template">
       <img class="card__picture" />

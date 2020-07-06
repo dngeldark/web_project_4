@@ -1,0 +1,23 @@
+.add-pic-popup__close-btn {
+  position: absolute;
+  bottom: 100%;
+  left: 100%;
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-image: url('../../../images/Vector-cross.png');
+  transform: rotate(45deg);
+  outline: none;
+  background-color: transparent;
+  border: none;
+  background-size: contain;
+}
+
+@media screen and (max-width: 768px) {
+  .add-pic-popup__close-btn {
+    width: 20px;
+    height: 20px;
+    bottom: 99%;
+    left: 99%;
+  }
+}

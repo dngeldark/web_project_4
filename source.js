@@ -50,107 +50,125 @@ const modalPicture = document.querySelector('.picture-modal__image');
 const modalTitle = document.querySelector('.picture-modal__title');
 const addButton = document.querySelector('.profile__add-btn');
 const cards = document.querySelector('.cards');
+const addPlaceForm = document.querySelector('.place-form');
 
-//open-close forms
-function toggleModal() {
+//toggle Edit form
+function toggleEditForm() {
   document.querySelector('.popup').classList.toggle('popup_opened');
 }
 
-//Submit handle for profile form
-function formSubmitHandler(e) {
-  e.preventDefault();
+//toggle Add new place form
+function toggleAddPicForm() {
+  document
+    .querySelector('.add-pic-popup')
+    .classList.toggle('add-pic-popup_opened');
+}
+
+//Submit handle for  edit form
+function formSubmitHandler(evt) {
+  evt.preventDefault();
   profileName.textContent = formInputTwo.value;
   profileJob.textContent = formInputOne.value;
   formElement.reset();
-  toggleModal();
+  toggleEditForm();
 }
 
-//Form cloe button handler
-closeBtn.addEventListener('click', toggleModal);
+//Edit Form close button handler
+closeBtn.addEventListener('click', toggleEditForm);
 
 //Open profile edit form
-editBtn.addEventListener('click', () => {
-  toggleModal();
-  formInputOne.placeholder = 'Profession';
-  formInputTwo.placeholder = 'Name';
-  formTitle.textContent = 'Edit Profile';
-  formElement.removeEventListener('submit', addBtnSubmitHandler);
+editBtn.addEventListener('click', (evt) => {
+  toggleEditForm();
   formElement.addEventListener('submit', formSubmitHandler);
 });
 
+//click handle for delete btn
+function deleteCard(evt) {
+  if (evt.target.classList[0] === 'card__delete-btn') {
+    evt.target.parentNode.remove();
+  }
+}
+
+//click handle for like btn
+function likeCard(evt) {
+  if (evt.target.classList[0] === 'card__like-btn') {
+    evt.target.classList.toggle('card__like-btn_active');
+    evt.stopImmediatePropagation();
+  }
+}
+
+//Open picture-modal when card is clicked
+function openPictureModal(evt) {
+  if (evt.target.classList[0] === 'card__picture') {
+    modalPicture.src = evt.target.src;
+    modalTitle.textContent = evt.target.alt;
+    modal.classList.toggle('fade-out');
+  }
+}
+
+//Close picture-modal on click
+modal
+  .querySelector('.picture-modal__close-btn')
+  .addEventListener('click', (evt) => {
+    modal.classList.toggle('fade-out');
+    evt.stopImmediatePropagation();
+  });
+
+// event listener for Cards component
+cards.addEventListener('click', (evt) => {
+  deleteCard(evt);
+  likeCard(evt);
+  openPictureModal(evt);
+});
+
 //create Card element
-const createCard = function (item) {
+function createCard(item) {
   const card = document.createElement('figure');
   card.append(document.querySelector('#card-template').content.cloneNode(true));
   card.classList.add('card');
   const cardPicture = card.querySelector('.card__picture');
-  const likeBtn = card.querySelector('.card__like-btn');
   cardPicture.src = item.link;
   cardPicture.alt = item.name;
+  item.liked = false;
   card.querySelector('.card__title').textContent = item.name;
-
-  //like-button click handle
-  likeBtn.addEventListener('click', () => {
-    item.liked = !item.liked;
-    let icon = card.querySelector('.card__like-btn').style;
-    item.liked
-      ? (icon.backgroundImage = "url('./images/blackHeart.png')")
-      : (icon.backgroundImage = "url('./images/heart.png')");
-  });
-
-  //delete-button click handle
-  card.querySelector('.card__delete-btn').addEventListener('click', () => {
-    initialCards.splice(initialCards.indexOf(item), 1);
-    card.remove();
-  });
-
-  //Open picture-modal when card is clicked
-  cardPicture.addEventListener('click', (e) => {
-    modalPicture.src = e.target.src;
-    modalTitle.textContent = e.target.alt;
-    modal.classList.toggle('fade-out');
-
-    //Close picture-modal on click
-    modal
-      .querySelector('.picture-modal__close-btn')
-      .addEventListener('click', (evt) => {
-        modal.classList.toggle('fade-out');
-        evt.stopImmediatePropagation();
-      });
-  });
   return card;
-};
+}
 
 //Render cards and append to cards block
-const renderCards = function () {
-  initialCards.map((item) => {
+function renderCards() {
+  initialCards.forEach((item) => {
     cards.append(createCard(item));
   });
-};
+}
+
+//create object with new picture form info
+function createObject() {
+  const name = document.querySelector('.place-form__title-input').value;
+  const link = document.querySelector('.place-form__url-input').value;
+  return { name, link, liked: true };
+}
 
 //Add new card form handler
 function addBtnSubmitHandler(evt) {
   evt.preventDefault();
-  evt.stopImmediatePropagation();
-  const newCard = {
-    name: formInputTwo.value,
-    link: formInputOne.value,
-    liked: false,
-  };
-  initialCards.push(newCard);
-  formElement.reset();
-  cards.insertBefore(createCard(newCard), cards.firstChild);
-  toggleModal();
+  const card = createObject();
+  addPlaceForm.reset();
+  cards.insertBefore(createCard(card), cards.firstChild);
+  toggleAddPicForm();
 }
 
 //add event listener to add button
-addButton.addEventListener('click', () => {
-  toggleModal();
-  formInputTwo.placeholder = 'Title';
-  formInputOne.placeholder = 'Image URL';
-  formTitle.textContent = 'New Place';
-  formElement.removeEventListener('submit', formSubmitHandler);
-  formElement.addEventListener('submit', addBtnSubmitHandler);
+addButton.addEventListener('click', (evt) => {
+  toggleAddPicForm();
 });
+
+addPlaceForm.addEventListener('submit', addBtnSubmitHandler);
+
+//close add picture form modal
+document
+  .querySelector('.add-pic-popup__close-btn')
+  .addEventListener('click', (evt) => {
+    toggleAddPicForm();
+  });
 
 renderCards();
