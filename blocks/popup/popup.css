@@ -25,8 +25,3 @@
   opacity: 0.8;
   z-index: -1;
 }
-
-.popup_opened {
-  opacity: 1;
-  pointer-events: all;
-}

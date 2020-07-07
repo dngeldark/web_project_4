@@ -14,8 +14,3 @@
   transition: 0.3s;
   pointer-events: none;
 }
-
-.add-pic-popup_opened {
-  opacity: 1;
-  pointer-events: all;
-}

@@ -4,12 +4,10 @@
 @import url('./__container/picture__modal-container.css');
 
 .picture-modal {
-  width: 100vw;
-  height: 100vh;
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.863);
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 51.5%;
+  transform: translate(-50%, -50%);
   opacity: 0;
   transition: 0.3s ease-out;
   pointer-events: none;
@@ -18,8 +16,19 @@
   justify-content: center;
 }
 
-.fade-out {
-  opacity: 1;
-  transition: 0.3s ease-out;
-  pointer-events: all;
+.picture-modal::before {
+  content: '';
+  min-width: 200vw;
+  min-height: 200vh;
+  background-color: rgba(0, 0, 0, 0.705);
+  position: absolute;
+  top: 10;
+  left: 10;
+  z-index: -3;
+}
+
+@media screen and (max-width: 725px) {
+  .picture-modal {
+    left: 54.5%;
+  }
 }
