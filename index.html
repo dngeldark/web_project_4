@@ -35,49 +35,66 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2020 Around the U.S.</p>
     </footer>
-    <div class="popup">
+    <div class="popup modal">
       <div class="popup__container">
-        <form class="form">
+        <form class="form" novalidate>
           <h2 class="form__title">Edit profile</h2>
           <input
             type="text"
-            class="form__name"
+            class="form__name form__input"
             placeholder="Name"
             value="Juan Hernandez"
+            minlength="3"
+            maxlength="30"
+            required
           />
+          <span class="error-message"></span>
           <input
             type="text"
             value="Developer"
-            class="form__profession"
+            class="form__profession form__input"
             placeholder="Profession"
+            minlength="3"
+            required
           />
-          <button class="form__save-btn" type="submit">Save</button>
+          <span class="error-message"></span>
+          <button class="form__save-btn form__button" type="submit">
+            Save
+          </button>
           <button class="popup__close-btn" type="reset"></button>
         </form>
       </div>
     </div>
 
-    <div class="add-pic-popup">
+    <div class="add-pic-popup modal">
       <div class="add-pic-popup__container">
-        <form class="place-form">
+        <form class="form place-form" novalidate>
           <h2 class="place-form__title">New Place</h2>
           <input
             type="text"
-            class="place-form__title-input"
+            class="place-form__title-input form__input"
             placeholder="Title"
+            minlength="3"
+            maxlength="10"
+            required
           />
+          <span class="error-message"></span>
           <input
-            type="text"
-            class="place-form__url-input"
+            type="url"
+            class="place-form__url-input form__input"
             placeholder="Image URL"
+            required
           />
-          <button class="place-form__save-btn" type="submit">Save</button>
+          <span class="error-message"></span>
+          <button class="place-form__save-btn form__button" type="submit">
+            Save
+          </button>
           <button class="add-pic-popup__close-btn" type="reset"></button>
         </form>
       </div>
     </div>
 
-    <div class="picture-modal">
+    <div class="picture-modal modal">
       <figure class="picture-modal__container">
         <img class="picture-modal__image" />
         <figcaption class="picture-modal__title"></figcaption>
@@ -93,5 +110,6 @@
       </div>
     </template>
     <script src="source.js"></script>
+    <script src="validation.js"></script>
   </body>
 </html>

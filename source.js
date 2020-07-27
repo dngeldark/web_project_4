@@ -50,11 +50,22 @@ const modalTitle = document.querySelector('.picture-modal__title');
 const addButton = document.querySelector('.profile__add-btn');
 const cards = document.querySelector('.cards');
 const addPlaceForm = document.querySelector('.place-form');
+const editFormPopup = document.querySelector('.popup');
 
 //toggle Edit form
 function toggleEditForm() {
-  document.querySelector('.popup').classList.toggle('popup_opened');
+  editFormPopup.classList.toggle('popup_opened');
 }
+
+//close edit form
+editFormPopup.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('popup')) toggleEditForm();
+});
+
+//close add picture from
+document.querySelector('.add-pic-popup').addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('add-pic-popup')) toggleAddPicForm();
+});
 
 //toggle Add new place form
 function toggleAddPicForm() {
@@ -96,23 +107,45 @@ function likeCard(evt) {
   }
 }
 
+let isPictureModalActive = false;
+function closePopupOnEsc(evt) {
+  if (evt.keyCode === 27) {
+    modal.classList.remove('picture-modal_active');
+    isPictureModalActive = !isPictureModalActive;
+    document
+      .querySelector('.page')
+      .removeEventListener('keydown', closePopupOnEsc);
+  }
+}
+
+function addKeydownHandle(modalActive) {
+  if (modalActive) {
+    document
+      .querySelector('.page')
+      .addEventListener('keydown', closePopupOnEsc);
+  } else {
+    document
+      .querySelector('.page')
+      .removeEventListener('keydown', closePopupOnEsc);
+  }
+}
+
+//toggle picture modal
+function togglePictureModal() {
+  modal.classList.toggle('picture-modal_active');
+  isPictureModalActive = !isPictureModalActive;
+  addKeydownHandle(isPictureModalActive);
+}
+
 //Open picture-modal when card is clicked
 function openPictureModal(evt) {
   if (evt.target.classList[0] === 'card__picture') {
     modalPicture.src = evt.target.src;
     modalPicture.alt = evt.target.alt;
     modalTitle.textContent = evt.target.alt;
-    modal.classList.toggle('picture-modal_active');
+    togglePictureModal();
   }
 }
-
-//Close picture-modal on click
-modal
-  .querySelector('.picture-modal__close-btn')
-  .addEventListener('click', (evt) => {
-    modal.classList.toggle('picture-modal_active');
-    evt.stopImmediatePropagation();
-  });
 
 // event listener for Cards component
 cards.addEventListener('click', (evt) => {
@@ -166,5 +199,12 @@ addPlaceForm
   .addEventListener('click', () => {
     toggleAddPicForm();
   });
+
+//close picture modal
+modal.addEventListener('click', (evt) => {
+  if (!evt.target.classList.contains('picture-modal__image')) {
+    togglePictureModal();
+  }
+});
 
 renderCards();
