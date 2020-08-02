@@ -51,27 +51,51 @@ const addButton = document.querySelector('.profile__add-btn');
 const cards = document.querySelector('.cards');
 const addPlaceForm = document.querySelector('.place-form');
 const editFormPopup = document.querySelector('.popup');
+const addPictureFormPupup = document.querySelector('.add-pic-popup');
+let isModalOpen = false;
 
-//toggle Edit form
-function toggleEditForm() {
-  editFormPopup.classList.toggle('popup_opened');
+function addEsc() {
+  document.querySelector('.page').addEventListener('keydown', closePopupOnEsc);
+}
+
+function removeEsc() {
+  document
+    .querySelector('.page')
+    .removeEventListener('keydown', closePopupOnEsc);
+}
+
+//open edit form
+function openEditForm() {
+  editFormPopup.classList.add('popup_opened');
+  addEsc();
 }
 
 //close edit form
+function closeEditForm() {
+  editFormPopup.classList.remove('popup_opened');
+  removeEsc();
+}
+
+//close edit form when clicked outside the form
 editFormPopup.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('popup')) toggleEditForm();
+  if (evt.target.classList.contains('popup')) closeEditForm();
 });
 
-//close add picture from
-document.querySelector('.add-pic-popup').addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('add-pic-popup')) toggleAddPicForm();
+//close add picture from when clicked outside the form
+addPictureFormPupup.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('add-pic-popup')) closeAddPicForm();
 });
 
-//toggle Add new place form
-function toggleAddPicForm() {
-  document
-    .querySelector('.add-pic-popup')
-    .classList.toggle('add-pic-popup_active');
+//open add picture form
+function openAddPicForm() {
+  addPictureFormPupup.classList.add('add-pic-popup_active');
+  addEsc();
+}
+
+//close add picture form
+function closeAddPicForm() {
+  addPictureFormPupup.classList.remove('add-pic-popup_active');
+  removeEsc();
 }
 
 //Submit handle for  edit form
@@ -80,16 +104,20 @@ function formSubmitHandler(evt) {
   profileName.textContent = formInputTwo.value;
   profileJob.textContent = formInputOne.value;
   formElement.reset();
-  toggleEditForm();
+  closeEditForm();
+  removeEsc();
 }
 
 //Edit Form close button handler
-closeBtn.addEventListener('click', toggleEditForm);
+closeBtn.addEventListener('click', () => {
+  closeEditForm();
+});
 
 //Open profile edit form
 editBtn.addEventListener('click', () => {
-  toggleEditForm();
+  openEditForm();
   formElement.addEventListener('submit', formSubmitHandler);
+  addEsc();
 });
 
 //click handle for delete btn
@@ -107,34 +135,14 @@ function likeCard(evt) {
   }
 }
 
-let isPictureModalActive = false;
+// handle ESC keydown
 function closePopupOnEsc(evt) {
   if (evt.keyCode === 27) {
-    modal.classList.remove('picture-modal_active');
-    isPictureModalActive = !isPictureModalActive;
-    document
-      .querySelector('.page')
-      .removeEventListener('keydown', closePopupOnEsc);
+    closeEditForm();
+    closeAddPicForm();
+    closePictureModal();
+    removeEsc();
   }
-}
-
-function addKeydownHandle(modalActive) {
-  if (modalActive) {
-    document
-      .querySelector('.page')
-      .addEventListener('keydown', closePopupOnEsc);
-  } else {
-    document
-      .querySelector('.page')
-      .removeEventListener('keydown', closePopupOnEsc);
-  }
-}
-
-//toggle picture modal
-function togglePictureModal() {
-  modal.classList.toggle('picture-modal_active');
-  isPictureModalActive = !isPictureModalActive;
-  addKeydownHandle(isPictureModalActive);
 }
 
 //Open picture-modal when card is clicked
@@ -143,8 +151,15 @@ function openPictureModal(evt) {
     modalPicture.src = evt.target.src;
     modalPicture.alt = evt.target.alt;
     modalTitle.textContent = evt.target.alt;
-    togglePictureModal();
+    modal.classList.add('picture-modal_active');
+    addEsc();
   }
+}
+
+//close picture modal
+function closePictureModal() {
+  modal.classList.remove('picture-modal_active');
+  removeEsc();
 }
 
 // event listener for Cards component
@@ -182,12 +197,12 @@ function addBtnSubmitHandler(evt) {
   const card = { name, link, liked: false };
   addPlaceForm.reset();
   cards.insertBefore(createCard(card), cards.firstChild);
-  toggleAddPicForm();
+  closeAddPicForm();
 }
 
 //add event listener to add button
 addButton.addEventListener('click', () => {
-  toggleAddPicForm();
+  openAddPicForm();
 });
 
 //add place form submit handler
@@ -197,13 +212,13 @@ addPlaceForm.addEventListener('submit', addBtnSubmitHandler);
 addPlaceForm
   .querySelector('.add-pic-popup__close-btn')
   .addEventListener('click', () => {
-    toggleAddPicForm();
+    closeAddPicForm();
   });
 
 //close picture modal
 modal.addEventListener('click', (evt) => {
   if (!evt.target.classList.contains('picture-modal__image')) {
-    togglePictureModal();
+    closePictureModal();
   }
 });
 
