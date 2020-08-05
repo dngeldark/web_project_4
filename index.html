@@ -76,6 +76,7 @@
             placeholder="Title"
             minlength="3"
             maxlength="10"
+            name="title"
             required
           />
           <span class="popup__error_visible"></span>
@@ -83,6 +84,7 @@
             type="url"
             class="place-form__url-input form__input"
             placeholder="Image URL"
+            name="url"
             required
           />
           <span class="popup__error_visible"></span>
@@ -109,7 +111,7 @@
         <button class="card__like-btn"></button>
       </div>
     </template>
-    <script src="source.js"></script>
-    <script src="validation.js"></script>
+    <script type="module" src="source.js"></script>
+    <!-- <script src="validation.js"></script> -->
   </body>
 </html>
