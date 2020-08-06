@@ -1,4 +1,4 @@
-export default class Validator {
+export default class FormValidator {
   constructor(form, settings) {
     const {
       formSelector,

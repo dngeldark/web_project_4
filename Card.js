@@ -1,15 +1,15 @@
 export default class Card {
-  constructor({ name, link }) {
+  constructor({ name, link }, cardSelector) {
     this._name = name;
     this._link = link;
+    this._cardSelector = cardSelector;
   }
 
-  _generateCard() {
-    this._card = document.createElement('figure');
-    this._card.append(
-      document.querySelector('#card-template').content.cloneNode(true)
-    );
-    this._card.classList.add('card');
+  generateCard() {
+    this._card = document
+      .querySelector('#card-template')
+      .content.querySelector('.card')
+      .cloneNode(true);
     this.setEventListeners();
     this._cardPicture = this._card.querySelector('.card__picture');
     this._cardPicture.src = this._link;

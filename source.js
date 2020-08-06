@@ -1,6 +1,6 @@
 import Card from './Card.js';
+import FormValidator from './FormValidator.js';
 import { initialCards, settings } from './initialCards.js';
-import Validator from './Validator.js';
 
 const editBtn = document.querySelector('.profile__edit-btn');
 const closeBtn = document.querySelector('.popup__close-btn');
@@ -10,18 +10,19 @@ const profileJob = document.querySelector('.profile__job');
 const formInputOne = document.querySelector('.form__profession');
 const formInputTwo = document.querySelector('.form__name');
 const modal = document.querySelector('.picture-modal');
-//const modalPicture = document.querySelector('.picture-modal__image');
-//const modalTitle = document.querySelector('.picture-modal__title');
 const addButton = document.querySelector('.profile__add-btn');
 const cards = document.querySelector('.cards');
 const addPlaceForm = document.querySelector('.place-form');
 const editFormPopup = document.querySelector('.popup');
 const addPictureFormPupup = document.querySelector('.add-pic-popup');
+const cardTemplate = '#card-template';
 
+//add event listener
 function addEsc() {
   document.querySelector('.page').addEventListener('keydown', closePopupOnEsc);
 }
 
+//add remove event lister
 function removeEsc() {
   document
     .querySelector('.page')
@@ -30,7 +31,7 @@ function removeEsc() {
 
 //open edit form
 function openEditForm() {
-  new Validator(formElement, settings).enableValidation();
+  new FormValidator(formElement, settings).enableValidation();
   editFormPopup.classList.add('popup_opened');
   addEsc();
 }
@@ -53,7 +54,7 @@ addPictureFormPupup.addEventListener('click', (evt) => {
 
 //open add picture form
 function openAddPicForm() {
-  new Validator(addPlaceForm, settings).enableValidation();
+  new FormValidator(addPlaceForm, settings).enableValidation();
   addPictureFormPupup.classList.add('add-pic-popup_active');
   addEsc();
 }
@@ -86,21 +87,6 @@ editBtn.addEventListener('click', () => {
   addEsc();
 });
 
-//click handle for delete btn
-// function deleteCard(evt) {
-//   if (evt.target.classList[0] === 'card__delete-btn') {
-//     evt.target.parentNode.remove();
-//   }
-// }
-
-//click handle for like btn
-// function likeCard(evt) {
-//   if (evt.target.classList[0] === 'card__like-btn') {
-//     evt.target.classList.toggle('card__like-btn_active');
-//     evt.stopImmediatePropagation();
-//   }
-// }
-
 // handle ESC keydown
 function closePopupOnEsc(evt) {
   if (evt.keyCode === 27) {
@@ -110,17 +96,6 @@ function closePopupOnEsc(evt) {
     removeEsc();
   }
 }
-
-//Open picture-modal when card is clicked
-// function openPictureModal(evt) {
-//   if (evt.target.classList[0] === 'card__picture') {
-//     modalPicture.src = evt.target.src;
-//     modalPicture.alt = evt.target.alt;
-//     modalTitle.textContent = evt.target.alt;
-//     modal.classList.add('picture-modal_active');
-//     addEsc();
-//   }
-// }
 
 //close picture modal
 function closePictureModal() {
@@ -133,39 +108,24 @@ cards.addEventListener('click', (evt) => {
   if (evt.target.classList[0] === 'card__picture') {
     addEsc();
   }
-
-  //   //deleteCard(evt);
-  //   //openPictureModal(evt);
 });
-
-//create Card element
-// function createCard(item) {
-//   const card = document.createElement('figure');
-//   card.append(document.querySelector('#card-template').content.cloneNode(true));
-//   card.classList.add('card');
-//   const cardPicture = card.querySelector('.card__picture');
-//   cardPicture.src = item.link;
-//   cardPicture.alt = item.name;
-//   item.liked = false;
-//   card.querySelector('.card__title').textContent = item.name;
-//   return card;
-// }
 
 //Render cards and append to cards block
 function renderCards() {
   initialCards.forEach((item) => {
-    const card = new Card(item);
-    cards.append(card._generateCard());
+    cards.append(new Card(item, cardTemplate).generateCard());
   });
 }
 
 //Add new card form handler
 function addBtnSubmitHandler(evt) {
   evt.preventDefault();
-  const form = document.forms[1];
-  const card = { name: form.title.value, link: form.url.value };
-  form.reset();
-  cards.insertBefore(new Card(card)._generateCard(), cards.firstChild);
+  const card = { name: addPlaceForm.title.value, link: addPlaceForm.url.value };
+  addPlaceForm.reset();
+  cards.insertBefore(
+    new Card(card, cardTemplate).generateCard(),
+    cards.firstChild
+  );
   closeAddPicForm();
 }
 
