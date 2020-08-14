@@ -1,13 +1,14 @@
 export default class Card {
-  constructor({ name, link }, cardSelector) {
+  constructor({ name, link }, cardSelector, handleCardClick) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   generateCard() {
     this._card = document
-      .querySelector('#card-template')
+      .querySelector(this._cardSelector)
       .content.querySelector('.card')
       .cloneNode(true);
     this.setEventListeners();
@@ -28,16 +29,6 @@ export default class Card {
     this._card.remove();
   }
 
-  _handleCardClick() {
-    const modalPicture = document.querySelector('.picture-modal__image');
-    modalPicture.src = this._link;
-    modalPicture.alt = this._name;
-    document.querySelector('.picture-modal__title').textContent = this._name;
-    document
-      .querySelector('.picture-modal')
-      .classList.add('picture-modal_active');
-  }
-
   setEventListeners() {
     //like button
     this._card
@@ -55,7 +46,8 @@ export default class Card {
 
     //card click
     this._card.querySelector('.card__picture').addEventListener('click', () => {
-      this._handleCardClick();
+      this._handleCardClick(this._link, this._name);
+      event.stopPropagation();
     });
   }
 }

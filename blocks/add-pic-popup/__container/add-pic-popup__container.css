@@ -6,7 +6,6 @@
   display: flex;
   flex-flow: column;
   min-width: 430px;
-  min-height: 330px;
 }
 
 @media screen and (max-width: 725px) {

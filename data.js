@@ -37,6 +37,8 @@ export const initialCards = [
   },
 ];
 
+export const cardTemplate = '#card-template';
+
 export const settings = {
   formSelector: '.form',
   inputSelector: '.form__input',
@@ -44,4 +46,9 @@ export const settings = {
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible',
+};
+
+export const cardRenderer = (item) => {
+  const card = new Card(item, cardTemplate).generateCard();
+  cardsSection.addItem(card);
 };

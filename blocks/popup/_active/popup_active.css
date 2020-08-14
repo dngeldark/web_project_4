@@ -1,4 +1,4 @@
-.popup_opened {
+.popup_active {
   opacity: 1;
   pointer-events: all;
 }

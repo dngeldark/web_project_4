@@ -9,7 +9,7 @@ export default class FormValidator {
       errorClass,
     } = settings;
 
-    this._form = form;
+    this._form = document.querySelector(form);
     this._formSelector = formSelector;
     this._inputSelector = inputSelector;
     this._submitButtonSelector = submitButtonSelector;
