@@ -4,9 +4,10 @@
 
 In this project I made use of javascript to target elements in the DOM to be able to change and to store data from the forms.
 
-I also used templates and cloning for manipulating the virtual DOM.
-
-Implemented functionality of forms and buttons.
+Make use of modules
+Make use of webpack
+Make use of Babel
+MAke use of OOP
 
 **Project**
 
