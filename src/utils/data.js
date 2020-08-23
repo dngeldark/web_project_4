@@ -38,6 +38,8 @@ export const initialCards = [
 ];
 
 export const cardTemplate = '#card-template';
+export const editProfileBtn = document.querySelector('.profile__edit-btn');
+export const addPlaceBtn = document.querySelector('.profile__add-btn');
 
 export const settings = {
   formSelector: '.form',
