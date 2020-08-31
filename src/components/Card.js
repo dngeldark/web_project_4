@@ -1,9 +1,13 @@
 export default class Card {
-  constructor({ name, link }, cardSelector, handleCardClick) {
+  constructor({ name, link, _id, likes, owner }, cardSelector, handleCardClick,handleDeleteCard) {
     this._name = name;
     this._link = link;
+    this._id = _id;
+    this._likesCount = likes.length;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
+    this._handleDeleteCard = handleDeleteCard;
+    this._ownerId = owner._id;
   }
 
   generateCard() {
@@ -16,6 +20,12 @@ export default class Card {
     this._cardPicture.src = this._link;
     this._cardPicture.alt = this._name;
     this._card.querySelector('.card__title').textContent = this._name;
+    this._card.querySelector('.card__likes-count').textContent = this._likesCount;
+
+    if(this._ownerId !== "c4811e6229ac5c0ef78eb4ac"){
+      this._card.querySelector('.card__delete-btn').style.display = "none";
+    }
+
     return this._card;
   }
 
@@ -42,6 +52,7 @@ export default class Card {
       .querySelector('.card__delete-btn')
       .addEventListener('click', () => {
         this._handleDeleteBtn();
+        this._handleDeleteCard(this._id);
       });
 
     //card click

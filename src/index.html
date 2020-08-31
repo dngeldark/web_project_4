@@ -22,9 +22,9 @@
         />
         <div class="profile__info">
           <h1 class="profile__name">
-            Juan Hernandez
+            
           </h1>
-          <p class="profile__job">Developer</p>
+          <p class="profile__job"></p>
           <button class="profile__edit-btn"></button>
         </div>
         <button class="profile__add-btn"></button>
@@ -97,6 +97,18 @@
       </div>
     </div>
 
+    <div class="confirm-popup modal">
+      <div class="add-pic-popup__container">
+        <form class="form place-form" novalidate>
+          <h2 class="place-form__title">New Place</h2>
+          <button class="place-form__save-btn form__button" type="submit">
+            Save
+          </button>
+          <button class="add-pic-popup__close-btn" type="reset"></button>
+        </form>
+      </div>
+    </div>
+
     <div class="picture-modal modal">
       <figure class="picture-modal__container">
         <img class="picture-modal__image" />
@@ -110,6 +122,7 @@
         <button class="card__delete-btn"></button>
         <div class="card__caption">
           <h3 class="card__title"></h3>
+          <p class="card__likes-count"></p>
           <button class="card__like-btn"></button>
         </div>
       </figure>
