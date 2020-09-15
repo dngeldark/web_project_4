@@ -15,11 +15,16 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img
-          class="profile__avatar"
-          src="./images/me.jpg"
-          alt="Profile picture"
-        />
+        <div class="profile__avatar-container">
+          <button class="profile__edit-avatar">
+          
+          </button>
+          <img
+            class="profile__avatar"
+            src="./images/spinner.gif"
+            alt="Profile picture"
+          />
+        </div>
         <div class="profile__info">
           <h1 class="profile__name">
             
@@ -34,6 +39,7 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2020 Around the U.S.</p>
     </footer>
+
     <div class="popup modal">
       <div class="popup__container">
         <form class="form" novalidate>
@@ -67,6 +73,40 @@
       </div>
     </div>
 
+    <div class="avatar-popup modal">
+      <div class="avatar-popup__container">
+        <form class="form avatar-form" novalidate>
+          <h2 class="form__title">Change avatar</h2>
+          <input
+            type="url"
+            class="form__profession form__input"
+            placeholder="url"
+            minlength="3"
+            maxlength="100"
+            name="avatar"
+            required
+          />
+          <span class="avatar-popup__error_visible"></span>
+          <button class="form__save-btn form__button" type="submit">
+            submit
+          </button>
+          <button class="avatar-popup__close-btn" type="reset"></button>
+        </form>
+      </div>
+    </div>
+
+    <div class="confirm-popup modal">
+      <div class="confirm-popup__container">
+        <form class="form confirm-form" novalidate>
+          <h2 class="form__title">Are you sure</h2>
+          <button class="form__save-btn form__button" type="submit">
+            Yes
+          </button>
+          <button class="confirm-popup__close-btn" type="reset"></button>
+        </form>
+      </div>
+    </div>
+
     <div class="add-pic-popup modal">
       <div class="add-pic-popup__container">
         <form class="form place-form" novalidate>
@@ -90,19 +130,7 @@
           />
           <span class="popup__error_visible"></span>
           <button class="place-form__save-btn form__button" type="submit">
-            Save
-          </button>
-          <button class="add-pic-popup__close-btn" type="reset"></button>
-        </form>
-      </div>
-    </div>
-
-    <div class="confirm-popup modal">
-      <div class="add-pic-popup__container">
-        <form class="form place-form" novalidate>
-          <h2 class="place-form__title">New Place</h2>
-          <button class="place-form__save-btn form__button" type="submit">
-            Save
+            Create
           </button>
           <button class="add-pic-popup__close-btn" type="reset"></button>
         </form>
@@ -122,8 +150,10 @@
         <button class="card__delete-btn"></button>
         <div class="card__caption">
           <h3 class="card__title"></h3>
-          <p class="card__likes-count"></p>
-          <button class="card__like-btn"></button>
+          <div>
+            <button class="card__like-btn"></button>
+            <p class="card__likes-count"></p>
+          </div>
         </div>
       </figure>
     </template>

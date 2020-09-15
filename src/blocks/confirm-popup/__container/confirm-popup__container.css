@@ -1,0 +1,15 @@
+.confirm-popup__container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-flow: column;
+  min-width: 430px;
+}
+
+@media screen and (max-width: 725px) {
+  .confirm-popup__container {
+    min-width: calc(100% - 80px);
+  }
+}

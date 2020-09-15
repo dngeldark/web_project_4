@@ -15,4 +15,9 @@ export default class UserInfo {
     document.querySelector(this._nameSelector).textContent = name;
     document.querySelector(this._jobSelector).textContent = job;
   }
+
+  setUserAvatar(avatar){
+    document.querySelector(this.__avatarSelector).src = avatar;
+  }
+
 }

@@ -2,6 +2,7 @@ export default class Api{
   constructor(options){
     this._baseUrl = options.baseUrl;
     this._headers = {headers:options.headers};
+    this._auth = options.auth;
   }
 
   getInitialCards(){
@@ -22,7 +23,7 @@ export default class Api{
     return fetch(this._baseUrl+"users/me", {
       method: "PATCH",
       headers: {
-        authorization: "2dcdffb3-685e-4cea-8daa-c562836c5b1e",
+        authorization: this._auth,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
@@ -30,14 +31,17 @@ export default class Api{
         about,
       })
     })
-    .then(data => {return data.json()});
+    .then(res => {
+      if (res.ok) return res.json()
+      return Promise.reject(`Error: ${res.status}`)
+    });
   }
 
   postNewCard({name,link}){
     return fetch(this._baseUrl+"cards",{
       method: "POST",
       headers: {   
-        authorization: "2dcdffb3-685e-4cea-8daa-c562836c5b1e",
+        authorization: this._auth,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
@@ -45,17 +49,67 @@ export default class Api{
         link
       })
     })
-    .then(card => {return card.json()});
+    .then(res => {
+      if(res.ok) return res.json()
+      return Promise.reject(`Error: ${res.status}`) 
+    });
   }
 
   deleteCard(cardId){
     return fetch(this._baseUrl+`cards/${cardId}`,{
       method: "DELETE",
       headers: {   
-        authorization: "2dcdffb3-685e-4cea-8daa-c562836c5b1e",
+        authorization: this._auth,
       }
+    })
+    .then(res => {
+      if(res.ok) return res.json()
+      return Promise.reject(`Error: ${res.status}`);
     })
   }  
 
+  likeCard(cardId){
+    return fetch(this._baseUrl+`cards/likes/${cardId}`,{
+      method: "PUT",
+      headers: {
+        authorization: this._auth,
+      }
+    })
+    .then(res => {
+      if(res.ok) return res.json()
+      return Promise.reject(`Error: ${res.status}`);
+    })
+  }
+
+  unlikeCard(cardId){
+    return fetch(this._baseUrl+`cards/likes/${cardId}`,{
+      method: "DELETE",
+      headers: {
+        authorization: this._auth,
+      }
+    })
+    .then(res => {
+      if(res.ok) return res.json()
+      return Promise.reject(`Error: ${res.status}`);
+    })
+  }
+
+  updateProfilePicture(avatar){
+    return fetch(this._baseUrl+'users/me/avatar',{
+      method: "PATCH",
+      headers: {
+        authorization: this._auth,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+          avatar
+        })
+    })
+    .then(res => {
+      if(res.ok) return res.json()
+      return Promise.reject(`Error: ${res.status}`);
+    })
+  }
+  
 }
 

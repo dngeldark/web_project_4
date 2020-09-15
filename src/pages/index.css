@@ -2,12 +2,12 @@
 @import url('../vendor/fonts/inter.css');
 @import url('../blocks/page/page.css');
 @import url('../blocks/header/header.css');
-/* @import url('../blocks/modal/modal.css'); */
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/profile/profile.css');
 @import url('../blocks/cards/cards.css');
 @import url('../blocks/card/card.css');
 @import url('../blocks/popup/popup.css');
+@import url('../blocks/confirm-popup/confirm-popup.css');
 @import url('../blocks/popup/_active/popup_active.css');
 @import url('../blocks/form/form.css');
 @import url('../blocks/picture-modal/picture-modal.css');
@@ -17,3 +17,6 @@
 @import url('../blocks/place-form/place-form.css');
 @import url('../blocks/popup/__button/_disabled/popup__button_disabled.css');
 @import url('../blocks/popup/__input/_type_error/popup__input_type_error.css');
+@import url('../blocks/confirm-popup/_active/confirm-popup_active.css');
+@import url('../blocks/avatar-popup/avatar-popup.css');
+@import url('../blocks/avatar-popup/_active/avatar-popup_active.css');

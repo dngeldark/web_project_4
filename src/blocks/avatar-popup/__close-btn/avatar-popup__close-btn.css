@@ -1,0 +1,34 @@
+.avatar-popup__close-btn {
+  height: 40px;
+  width: 40px;
+  padding: 0;
+  align-self: flex-end;
+  background-color: transparent;
+  border: 0;
+  color: white;
+  position: absolute;
+  bottom: 98%;
+  left: 99%;
+  transition: 0.5s;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  outline: none;
+  background-image: url('../../../images/Vector-cross.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.avatar-popup__close-btn:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 768px) {
+  .avatar-popup__close-btn {
+    width: 20px;
+    height: 20px;
+    bottom: 99%;
+    left: 99%;
+  }
+}

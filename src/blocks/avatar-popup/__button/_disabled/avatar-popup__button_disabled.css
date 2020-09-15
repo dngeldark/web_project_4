@@ -1,0 +1,8 @@
+.avatar-popup__button_disabled {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  opacity: 0.2;
+  border-radius: 2px;
+  pointer-events: none;
+}

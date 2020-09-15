@@ -40,6 +40,10 @@ export const initialCards = [
 export const cardTemplate = '#card-template';
 export const editProfileBtn = document.querySelector('.profile__edit-btn');
 export const addPlaceBtn = document.querySelector('.profile__add-btn');
+export const editAvatar = document.querySelector('.profile__edit-avatar');
+export const auth = "2dcdffb3-685e-4cea-8daa-c562836c5b1e";
+export const baseUrl = "https://around.nomoreparties.co/v1/group-3/";
+
 
 export const settings = {
   formSelector: '.form',
@@ -50,7 +54,4 @@ export const settings = {
   errorClass: 'popup__error_visible',
 };
 
-export const cardRenderer = (item) => {
-  const card = new Card(item, cardTemplate).generateCard();
-  cardsSection.addItem(card);
-};
+

@@ -5,10 +5,12 @@
   font-size: 14px;
   line-height: 2;
   outline: none;
+  margin-bottom: 48px;
 }
 
 @media screen and (max-width: 725px) {
   .form__profession {
     font-size: 12px;
+    margin-bottom: 36px;
   }
 }

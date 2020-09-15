@@ -5,6 +5,7 @@
 @import url('./__title/card__title.css');
 @import url('./__delete-btn/card__delete-btn.css');
 @import url('./__delete-btn/_inactive/card__delete-btn_inactive.css');
+@import url('./__likes-count/card__likes-count.css');
 
 .card {
   border-radius: 10px;
