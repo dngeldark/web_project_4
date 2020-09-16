@@ -17,13 +17,16 @@ import PopupWithConfirm from '../components/PopupWithConfirm.js';
 import Api from '../components/Api.js';
 import './index.css';
 
+let userId;
+
 function createCard(item){
   return new Card(
     item,
     cardTemplate,
     cardClickHandler,
     deleteCardHandler,
-    likeCardHandler
+    likeCardHandler,
+    userId
   ).generateCard();
 }
 
@@ -42,51 +45,73 @@ const yandexApi = new Api({
   auth
 });
 
-yandexApi.getInitialCards()
-.then(data => {
-    cardsSection.setItems(data);
-    cardsSection.renderItems();
-  })
-.catch(err => console.log(err));
+Promise.all([
+  yandexApi.getUserInfo(),
+  yandexApi.getInitialCards()])
+  .then(([{name,about,avatar,_id},cards]) => {
+  user.setUserInfo(name,about);
+  user.setUserAvatar(avatar);
+  userId = _id;
+  cardsSection.setItems(cards);
+  cardsSection.renderItems()})
+  .catch(err => console.log(err));
 
 const deleteCardHandler = (card) => {
   confirmFormPopup.open();
   confirmFormPopup.card = card;
 }
 
-const likeCardHandler = (liked,id) => {
+const likeCardHandler = (liked,id,likeCard) => {
   if(liked){
-     return yandexApi.unlikeCard(id)
-     .catch(err => console.log(err));
+    yandexApi.unlikeCard(id)
+    .then(({likes}) => likeCard(likes.length))
+    .catch(err => console.log(err));
   } else {
-    return yandexApi.likeCard(id)
+    yandexApi.likeCard(id)
+    .then(({likes}) => likeCard(likes.length))
     .catch(err => console.log(err));
   }
 }
 
-const updateAvatarHandler = ({avatar}) => {
+const updateAvatarHandler = ({avatar},failSubmit) => {
   return yandexApi.updateProfilePicture(avatar)
-  .then(() => user.setUserAvatar(avatar))
-  .catch(err => console.log(err));
+  .then(() => {
+    user.setUserAvatar(avatar)
+    profilePictureFormPopup.close();
+  })
+  .catch(err => {
+    console.log(err)
+    failSubmit();
+  });
 }
 
-const editProfileSubmitHandler = ({ name, job }) => {
+const editProfileSubmitHandler = ({ name, job },failSubmit) => {
    return yandexApi.setUserInfo(name,job)
-  .then(data => user.setUserInfo(data.name,data.about))
-  .catch(err => console.log(err));
+  .then(data => {
+    user.setUserInfo(data.name,data.about)
+    editProfileFormPopup.close();
+  })
+  .catch(err => {
+    console.log(err)
+    failSubmit()
+  });
 };
 
 const cardClickHandler = (link, name) => {
   picturePopup.open(link, name);
 };
 
-const addPlaceSubmitHandler = (cardData) => {
+const addPlaceSubmitHandler = (cardData,failSubmit) => {
   return yandexApi.postNewCard(cardData)
   .then(data => {
   const card = createCard(data);
   cardsSection.addItem(card);
+  addCardFormPopup.close();
   })
-  .catch(err => console.log(err));
+  .catch(err => {
+    console.log(err)
+    failSubmit();
+  });
 };
 
 const editProfileForm = new FormValidator('.form', settings);
@@ -110,9 +135,15 @@ const addCardFormPopup = new PopupWithForm(
 const confirmFormPopup = new PopupWithConfirm(
   '.confirm-popup',
   ()=>{
-    confirmFormPopup.card.remove();
+    //confirmFormPopup.card.remove();
     return yandexApi.deleteCard(confirmFormPopup.card.id)
-    .catch(err => console.log(err));
+    .then(()=> {
+      confirmFormPopup.card.remove()
+      confirmFormPopup.close();
+    })
+    .catch(err => {
+      console.log(err);
+    });
   }
 );
 
@@ -122,13 +153,6 @@ const user = new UserInfo({
   jobSelector: '.profile__job',
   avatarSelector: '.profile__avatar'
 });
-
-yandexApi.getUserInfo()
-.then(({name,about,avatar}) => {
-  user.setUserInfo(name,about);
-  user.setUserAvatar(avatar);
-})
-.catch(err => console.log(err));
 
 
 editProfileFormPopup.setEventListeners();

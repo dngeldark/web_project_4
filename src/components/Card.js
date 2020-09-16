@@ -1,17 +1,18 @@
 export default class Card {
-  constructor({ name, link, _id, likes, owner }, cardSelector, handleCardClick,handleDeleteCard,handleLikeClick) {
+  constructor({ name, link, _id, likes, owner }, cardSelector, handleCardClick,handleDeleteCard,handleLikeClick,userId) {
     this._name = name;
     this._link = link;
     this._id = _id;
     this._likes = likes;
     this._ownerId = owner._id;
-    this._likesCount = likes.length;
+    this._totalLikes = likes.length;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._handleDeleteCard = handleDeleteCard;
     this._handleLikeClick = handleLikeClick;
     this._liked = false;
-    this._userId = "c4811e6229ac5c0ef78eb4ac";
+    this._userId = userId;
+    this._likeCard = this._likeCard.bind(this);
   }
 
   generateCard() {
@@ -25,7 +26,8 @@ export default class Card {
     this._cardPicture.alt = this._name;
     this._card.id = this._id;
     this._card.querySelector('.card__title').textContent = this._name.substring(0,17);
-    this._card.querySelector('.card__likes-count').textContent = this._likesCount;
+    this._likesCount = this._card.querySelector('.card__likes-count');
+    this._likesCount.textContent = this._totalLikes;
 
     if(this._ownerId !== this._userId){
       this._card.querySelector('.card__delete-btn').style.display = "none";
@@ -51,15 +53,22 @@ export default class Card {
     .classList.toggle('card__like-btn_active');
   }
 
-  _handleLikeBtn() {
+  _likeCard(likes) {
+    this._totalLikes = likes;
     this._toggleLikeBtn();
-    this._handleLikeClick(this._liked,this._id)
-    //then(data => data.json()).
-    .then(data => {
-      this._likesCount = data.likes.length;
-      this._card.querySelector('.card__likes-count').textContent = this._likesCount;
-    });
+    this._likesCount.textContent = this._totalLikes;
     this._liked = !this._liked;
+  }
+
+  _handleLikeBtn() {
+    this._handleLikeClick(this._liked,this._id,this._likeCard)
+    // .then(data => {
+    //   this._totalLikes = data.likes.length;
+    //   this._toggleLikeBtn();
+    //   this._likesCount.textContent = this._totalLikes;
+    //   this._liked = !this._liked;
+    // })
+    // .catch(err => console.log(err));
   }
 
   _handleDeleteBtn() {

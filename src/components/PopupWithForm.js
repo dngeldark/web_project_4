@@ -6,6 +6,7 @@ export default class PopupWithForm extends Popup {
     this._submitHandler = submitHandler;
     this._form = this._popup.querySelector('form');
     this._submitButton = this._form.querySelector('.form__button');
+    this._failSubmit = this._failSubmit.bind(this);
   }
 
   open(data) {
@@ -35,19 +36,22 @@ export default class PopupWithForm extends Popup {
     return data;
   }
 
+  _failSubmit(){
+    this._submitButton.textContent = "try again"
+  }
+
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener('submit', (evt) => {
       const temp = this._submitButton.textContent;
       this._submitButton.textContent = "Saving...";
       evt.preventDefault();
-      this._submitHandler(this._getInputValues())
+      this._submitHandler(this._getInputValues(),this._failSubmit)
       .then(()=> {
-        this.close();
         // resets the text in the submit button after the popup has faded
         setTimeout(() => {
           this._submitButton.textContent = temp;          
-        },300);
+        },1000);
       });
     });
   }
