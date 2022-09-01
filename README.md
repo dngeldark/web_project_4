@@ -8,6 +8,7 @@ Make use of modules.
 Make use of webpack.
 Make use of Babel.
 MAke use of OOP.
+Make use of git 
 
 **Project**
 
